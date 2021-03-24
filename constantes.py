@@ -32,6 +32,7 @@ ARRIVAL = pygame.image.load("images/Gardien.png").convert_alpha()
 TUBE = pygame.image.load("images/tube_plastique.png").convert_alpha()
 ETHER = pygame.image.load("images/ether.png").convert_alpha()
 SYRINGE = pygame.image.load("images/seringue.png").convert_alpha()
+AIGUILLE = pygame.image.load("images/aiguille.png").convert_alpha()
 
 MG = pygame.image.load("images/MacGyver.png").convert_alpha()
 

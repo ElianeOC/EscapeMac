@@ -1,6 +1,6 @@
 from pygame import transform
 from constantes import*
-
+import random
 
 class Map:
     """define the labyritnh with my file.txt wich contains the maze.
@@ -19,7 +19,7 @@ class Map:
                 frame.append(list(line))
                 self.grid = frame
 
-    def display(self, screen):
+    def display(self, window):
         """display  wall as w and guardien as a"""
         num_line = 0
         for line in self.grid:
@@ -28,16 +28,18 @@ class Map:
                 x = num_sprite * SPRITE_SIZE
                 y = num_line * SPRITE_SIZE
                 if sprite == "w":
-                    screen.blit(WALL, (x, y))
+                    window.blit(WALL, (x, y))
                 if sprite == "a":
-                    screen.blit(transform.scale(ARRIVAL, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
+                    window.blit(transform.scale(ARRIVAL, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
                     pygame.display.flip()
                 if sprite == "e":
-                    screen.blit(transform.scale(ETHER, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
+                    window.blit(transform.scale(ETHER, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
                 if sprite == "s":
-                    screen.blit(transform.scale(SYRINGE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
+                    window.blit(transform.scale(SYRINGE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
                 if sprite == "t":
-                    screen.blit(transform.scale(TUBE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
+                    window.blit(transform.scale(TUBE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
+                if sprite == "d":
+                    window.blit(AIGUILLE, (random.randint(0, 0), random.randint(0, 0)))
                 num_sprite += 1
             num_line += 1
 
@@ -82,12 +84,3 @@ class Player:
                     self.y = self.sprite_y * SPRITE_SIZE
                     window.blit(transform.scale(MG, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     pygame.display.flip()
-
-    """     def random_position(self):
-        self.x = 0
-        self.y = 0
-        while self.labyrinth.grid[pos_y][pos_x] != "0":
-            pos_x = randint(0, (MAP_LENGTH - 1))
-            pos_y = randint(0, (MAP_HEIGHT - 1))
-        self.labyrinth.grid[pos_y][pos_x] = "w"
-        return (pos_x, pos_y)"""
