@@ -1,4 +1,5 @@
 import pygame
+from pygame import font
 
 pygame.init()
 
@@ -19,7 +20,7 @@ HOME = pygame.image.load("images/acceuil.png").convert()
 WELCOME = pygame.image.load("images/welkom.png")
 
 PICKUP = pygame.image.load("images/pickup.png").convert_alpha()
-GAMEOVER = pygame.image.load("images/gOver.png").convert()
+GAMEOVER = pygame.image.load("images/youloose.jpg.png").convert()
 
 WIN = pygame.image.load("images/bib.jpg").convert()
 
@@ -33,6 +34,11 @@ TUBE = pygame.image.load("images/tube_plastique.png").convert_alpha()
 ETHER = pygame.image.load("images/ether.png").convert_alpha()
 SYRINGE = pygame.image.load("images/seringue.png").convert_alpha()
 AIGUILLE = pygame.image.load("images/aiguille.png").convert_alpha()
+FONT = font.Font(None, 35)
+TEXT_ITEM = FONT.render(
+        "GOT IT",
+        True,
+        (200, 200, 200))
 
 MG = pygame.image.load("images/MacGyver.png").convert_alpha()
 

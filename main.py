@@ -60,4 +60,18 @@ while MAIN_LOOP:
                             if event.key == K_DOWN:
                                 Macgyver.move('bottom')
                                 print('move down')
-                        pygame.display.flip()
+                            print(f"counter {Macgyver.counter}")
+                            if labyrinth.grid[Macgyver.sprite_y][Macgyver.sprite_x] == 'G':
+                                print("Face the boss")
+                                if Macgyver.counter == {'e', 's', 't'}:
+                                    print("You Win")
+                                else : window.blit(transform.scale(GAMEOVER, SCREEN_SIZE), (0, 0))
+                                FONT = font.Font(None, 35)
+                                TEXT_HOME = FONT.render(
+                                    "Try Again Buddy",
+                                    True,
+                                    (200, 200, 200))
+                                window.blit(TEXT_HOME, (15, 200))
+                                pygame.display.flip()
+                                print("You Loose")
+                                pygame.display.flip()

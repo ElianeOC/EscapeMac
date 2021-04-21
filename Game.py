@@ -1,6 +1,7 @@
 from pygame import transform
 from constantes import*
-import random
+from random import randint
+
 
 class Map:
     """define the labyritnh with my file.txt wich contains the maze.
@@ -38,10 +39,9 @@ class Map:
                     window.blit(transform.scale(SYRINGE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
                 if sprite == "t":
                     window.blit(transform.scale(TUBE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
-                if sprite == "d":
-                    window.blit(AIGUILLE, (random.randint(0, 0), random.randint(0, 0)))
                 num_sprite += 1
             num_line += 1
+
 
 
 class Player:
@@ -50,21 +50,32 @@ class Player:
         self.y = 0
         self.sprite_x = 0
         self.sprite_y = 0
+        self.counter = set()
         self.labyrinth = labyrinth
         window.blit(transform.scale(MG, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
         pygame.display.flip()
 
+
     def move(self, direction):
         if direction == "right":
+            print(self.sprite_y, self.sprite_x +1)
             if self.sprite_x < NBR_SPRITE:
                 if self.labyrinth.grid[self.sprite_y][self.sprite_x+1] != "w":
-                    self.x = self.sprite_x * SPRITE_SIZE
+                    if self.labyrinth.grid[self.sprite_y][self.sprite_x + 1] in {'e', 's', 't'}:
+                        self.counter.add(self.labyrinth.grid[self.sprite_y][self.sprite_x+1])
+
+                    window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     self.sprite_x += 1
+                    self.x = self.sprite_x * SPRITE_SIZE
                     window.blit(transform.scale(MG, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     pygame.display.flip()
         if direction == "left":
             if self.sprite_x > 0:
                 if self.labyrinth.grid[self.sprite_y][self.sprite_x-1] != "w":
+                    if self.labyrinth.grid[self.sprite_y][self.sprite_x - 1] in {'e', 's', 't'}:
+                        self.counter.add(self.labyrinth.grid[self.sprite_y][self.sprite_x - 1])
+
+                    window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     self.sprite_x -= 1
                     self.x = self.sprite_x * SPRITE_SIZE
                     window.blit(transform.scale(MG, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
@@ -73,6 +84,9 @@ class Player:
         if direction == "bottom":
             if self.sprite_y < NBR_SPRITE:
                 if self.labyrinth.grid[self.sprite_y+1][self.sprite_x] != "w":
+                    if self.labyrinth.grid[self.sprite_y+1][self.sprite_x] in {'e', 's', 't'}:
+                        self.counter.add(self.labyrinth.grid[self.sprite_y+1][self.sprite_x])
+                    window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     self.sprite_y += 1
                     self.y = self.sprite_y * SPRITE_SIZE
                     window.blit(transform.scale(MG, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
@@ -80,7 +94,21 @@ class Player:
         if direction == "up":
             if self.sprite_y > 0:
                 if self.labyrinth.grid[self.sprite_y-1][self.sprite_x] != "w":
+                    if self.labyrinth.grid[self.sprite_y-1][self.sprite_x] in {'e', 's', 't'}:
+                        self.counter.add(self.labyrinth.grid[self.sprite_y-1][self.sprite_x])
+                    window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     self.sprite_y -= 1
                     self.y = self.sprite_y * SPRITE_SIZE
                     window.blit(transform.scale(MG, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
+
                     pygame.display.flip()
+
+
+
+
+
+
+
+
+
+
