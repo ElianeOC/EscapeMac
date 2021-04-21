@@ -8,15 +8,25 @@ pygame.display.set_caption(TITLE_WINDOW)
 
 pygame.display.set_mode(SCREEN_SIZE)
 
+SCORE = 0
 MAIN_LOOP = True
 while MAIN_LOOP:
+    print("mainloop")
     window.blit(Grey_GROUND, (0, 0))
     window.blit(transform.scale(HOME, SCREEN_SIZE), (0, 0))
+    FONT = font.Font(None, 50)
+    TEXT_SCORE = FONT.render(
+        f"SCORE is {SCORE}\n Press Enter To Play",
+        True,
+        (200, 200, 200))
+    window.blit(TEXT_SCORE, (15, 370))
+    pygame.display.flip()
     pygame.display.flip()
 
     # try to remove HOME_LOOP
     HOME_LOOP = True
     while HOME_LOOP:
+        print("homeloop")
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 MAIN_LOOP = False
@@ -26,7 +36,6 @@ while MAIN_LOOP:
                 pygame.display.flip()
 
             if event.type == KEYDOWN and event.key == K_RETURN:
-                # JINGLE.stop()
                 window.blit(transform.scale(BACKGROUND, SCREEN_SIZE), (0, 0))
                 window.blit(transform.scale(WELCOME, SCREEN_SIZE), (0, 0))
                 pygame.display.flip()
@@ -41,6 +50,7 @@ while MAIN_LOOP:
                 Macgyver = Player(labyrinth)
                 pygame.display.flip()
                 while GAME_LOOP:
+                    print("gameloop")
                     pygame.time.Clock().tick(30)
                     for event in pygame.event.get():
                         if event.type == QUIT:
@@ -64,14 +74,30 @@ while MAIN_LOOP:
                             if labyrinth.grid[Macgyver.sprite_y][Macgyver.sprite_x] == 'G':
                                 print("Face the boss")
                                 if Macgyver.counter == {'e', 's', 't'}:
+                                    window.blit(transform.scale(WIN, SCREEN_SIZE), (0, 0))
+                                    FONT = font.Font(None, 50)
+                                    TEXT_WIN = FONT.render(
+                                        "Proud of you",
+                                        True,
+                                        (200, 200, 200))
+                                    window.blit(TEXT_WIN, (15, 15))
+                                    pygame.display.flip()
                                     print("You Win")
-                                else : window.blit(transform.scale(GAMEOVER, SCREEN_SIZE), (0, 0))
-                                FONT = font.Font(None, 35)
-                                TEXT_HOME = FONT.render(
-                                    "Try Again Buddy",
-                                    True,
-                                    (200, 200, 200))
-                                window.blit(TEXT_HOME, (15, 200))
-                                pygame.display.flip()
-                                print("You Loose")
-                                pygame.display.flip()
+                                    SCORE += 1
+                                    GAME_LOOP = False
+                                    HOME_LOOP = False
+                                    break
+                                else:
+                                    window.blit(transform.scale(GAMEOVER, SCREEN_SIZE), (0, 0))
+                                    FONT = font.Font(None, 35)
+                                    TEXT_LOOSE = FONT.render(
+                                        "Try Again Buddy",
+                                        True,
+                                        (200, 200, 200))
+                                    window.blit(TEXT_LOOSE, (15, 370))
+                                    pygame.display.flip()
+                                    print("You Loose")
+                                    SCORE -= 1
+                                    GAME_LOOP = False
+                                    HOME_LOOP = False
+                                    break

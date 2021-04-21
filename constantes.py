@@ -20,9 +20,9 @@ HOME = pygame.image.load("images/acceuil.png").convert()
 WELCOME = pygame.image.load("images/welkom.png")
 
 PICKUP = pygame.image.load("images/pickup.png").convert_alpha()
-GAMEOVER = pygame.image.load("images/youloose.jpg.png").convert()
+GAMEOVER = pygame.image.load("images/youloose.jpg").convert()
 
-WIN = pygame.image.load("images/bib.jpg").convert()
+WIN = pygame.image.load("images/youwin.jpg").convert()
 
 Grey_GROUND = pygame.image.load("images/background.jpg").convert()
 BACKGROUND = pygame.image.load("images/fond.jpg").convert()
