@@ -21,7 +21,6 @@ while MAIN_LOOP:
         (200, 200, 200))
     window.blit(TEXT_SCORE, (15, 370))
     pygame.display.flip()
-    pygame.display.flip()
 
     # try to remove HOME_LOOP
     HOME_LOOP = True
@@ -50,7 +49,6 @@ while MAIN_LOOP:
                 Macgyver = Player(labyrinth)
                 pygame.display.flip()
                 while GAME_LOOP:
-                    print("gameloop")
                     pygame.time.Clock().tick(30)
                     for event in pygame.event.get():
                         if event.type == QUIT:
@@ -70,10 +68,11 @@ while MAIN_LOOP:
                             if event.key == K_DOWN:
                                 Macgyver.move('bottom')
                                 print('move down')
-                            print(f"counter {Macgyver.counter}")
+                                print(f"counter {Macgyver.counter}")
                             if labyrinth.grid[Macgyver.sprite_y][Macgyver.sprite_x] == 'G':
                                 print("Face the boss")
-                                if Macgyver.counter == {'e', 's', 't'}:
+                                print(Macgyver.counter)
+                                if Macgyver.counter == labyrinth.position:
                                     window.blit(transform.scale(WIN, SCREEN_SIZE), (0, 0))
                                     FONT = font.Font(None, 50)
                                     TEXT_WIN = FONT.render(
@@ -86,7 +85,8 @@ while MAIN_LOOP:
                                     SCORE += 1
                                     GAME_LOOP = False
                                     HOME_LOOP = False
-                                    break
+                                    pygame.display.flip()
+
                                 else:
                                     window.blit(transform.scale(GAMEOVER, SCREEN_SIZE), (0, 0))
                                     FONT = font.Font(None, 35)
