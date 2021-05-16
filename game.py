@@ -37,7 +37,7 @@ class Map:
                     window.blit(transform.scale(ARRIVAL, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
                 else:
                     if ELMENT != set():
-                        N = randint(1, 20)
+                        N = randint(1, 12)
                         print(N)
                         my_list = list(ELMENT)
                         first_element = my_list[0]

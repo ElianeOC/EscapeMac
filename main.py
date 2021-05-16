@@ -1,4 +1,4 @@
-from Game import *
+from game import *
 
 from pygame.locals import *
 from pygame import transform
