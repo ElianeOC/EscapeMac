@@ -11,10 +11,9 @@ pygame.display.set_mode(SCREEN_SIZE)
 SCORE = 0
 MAIN_LOOP = True
 while MAIN_LOOP:
-    print("mainloop")
     window.blit(Grey_GROUND, (0, 0))
     window.blit(transform.scale(HOME, SCREEN_SIZE), (0, 0))
-    FONT = font.Font(None, 50)
+    FONT = font.Font(None, 30)
     TEXT_SCORE = FONT.render(
         f"SCORE is {SCORE}\n Press Enter To Play",
         True,
@@ -22,16 +21,13 @@ while MAIN_LOOP:
     window.blit(TEXT_SCORE, (15, 370))
     pygame.display.flip()
 
-    # try to remove HOME_LOOP
     HOME_LOOP = True
     while HOME_LOOP:
-        print("homeloop")
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 MAIN_LOOP = False
                 HOME_LOOP = False
                 GAME_LOOP = False
-                print(" BYE BUDDY")
                 pygame.display.flip()
 
             if event.type == KEYDOWN and event.key == K_RETURN:
