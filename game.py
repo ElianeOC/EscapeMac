@@ -24,7 +24,6 @@ class Map:
     def display(self, window):
         """display  wall as w and guardien as a"""
         ELMENT = {'e', 's', 't'}
-        print(ELMENT)
         num_line = 0
         for line in self.grid:
             num_sprite = 0
@@ -50,7 +49,6 @@ class Map:
                                 window.blit(transform.scale(TUBE, (SPRITE_SIZE, SPRITE_SIZE)), (x, y))
                             self.position.add((num_line, num_sprite))
                             ELMENT.remove(first_element)
-                            print(f"self.position is {self.position}")
                 pygame.display.flip()
                 num_sprite += 1
             num_line += 1
@@ -85,7 +83,6 @@ class Player:
             if self.sprite_x > 0:
                 if self.labyrinth.grid[self.sprite_y][self.sprite_x-1] != "w":
                     if (self.sprite_y, self.sprite_x - 1) in self.labyrinth.position:
-                        print("_______________")
                         self.counter.add((self.sprite_y, self.sprite_x - 1))
 
                     window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
@@ -98,7 +95,6 @@ class Player:
             if self.sprite_y < NBR_SPRITE:
                 if self.labyrinth.grid[self.sprite_y+1][self.sprite_x] != "w":
                     if (self.sprite_y + 1, self.sprite_x) in self.labyrinth.position:
-                        print("+++++++++++++")
                         self.counter.add((self.sprite_y + 1, self.sprite_x))
                     window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     self.sprite_y += 1
@@ -109,7 +105,6 @@ class Player:
             if self.sprite_y > 0:
                 if self.labyrinth.grid[self.sprite_y-1][self.sprite_x] != "w":
                     if (self.sprite_y - 1, self.sprite_x) in self.labyrinth.position:
-                        print("========")
                         self.counter.add((self.sprite_y - 1, self.sprite_x))
                     window.blit(transform.scale(BACKGROUND, (SPRITE_SIZE, SPRITE_SIZE)), (self.x, self.y))
                     self.sprite_y -= 1

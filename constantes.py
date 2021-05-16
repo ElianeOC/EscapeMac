@@ -41,8 +41,4 @@ TEXT_ITEM = FONT.render(
         (200, 200, 200))
 
 MG = pygame.image.load("images/MacGyver.png").convert_alpha()
-
 FILE = ""
-
-"""soundtrack and jingle= pygame.mixer.sound("sound/soundtrack.wav)"""
-JINGLE = pygame.mixer.Sound("sound/jinglemac.mp3")
