@@ -16,8 +16,8 @@ pip install -r requirements.txt
 python main.py
 ````
 # Game architecture 
-the main entry is main.py
+* the main entry is main.py
 explain the loop wich m
-3 class : Player , Map, 
-the constantes of the game constantes.py : items, pictures , size of the screen
-Map : generate the labyrinth , display on the screen.
+* Two classes : Player , Map.
+* the constants of the game constantes.py : items, pictures , size of the screen.
+* Map : generate the labyrinth , display on the screen.
